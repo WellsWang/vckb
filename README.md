@@ -4,6 +4,9 @@
 
 Vibe Coding Keyboard 是一个基于 ESP32-S3 的自定义键盘项目，支持 USB HID 键盘和鼠标功能。该键盘配备了一个 76x284 分辨率的 TFT-LCD 显示屏、9 个按键、1 个拨动开关和 1 个旋转编码器。通过配套的配置工具，可以灵活配置按键映射，支持多达 10 个键盘方案。
 
+<img width="1284" height="878" alt="image" src="https://github.com/user-attachments/assets/6c4ae55b-e856-47fb-9703-5992b48a54d9" />
+
+
 项目作者：Wells Wang (geek-logic.com)  
 版本：0.1  
 发布日期：2026/02/08  
@@ -89,19 +92,12 @@ Vibe Coding Keyboard 是一个基于 ESP32-S3 的自定义键盘项目，支持 
 ## 使用说明
 
 1. 烧录固件后，键盘将作为 USB HID 设备连接到电脑。
-2. 使用配置工具连接到键盘的串口（115200 波特率）。
-3. 在配置工具中选择方案，设置按键映射。
-4. 点击"写入"将配置保存到键盘的 EEPROM。
-5. 键盘将根据配置响应按键输入。
+2. 在正常使用模式长按旋转编码器可以进入设置模式，顺时针/逆时针旋转进行菜单项选择，短按旋转编码器为确定，长按旋转编码器为取消或这回退到上一级菜单。
 
-### 远程配置模式
-
-- 键盘上电时进入远程配置模式，可通过串口进行配置读写。
-- 发送 0xFC 读取配置，0xFB 写入配置。
-
-## 配置工具
+## 远程配置工具
 
 `VCKBConfig.py` 是一个基于 Tkinter 的桌面应用，提供以下功能：
+<img width="937" height="645" alt="image" src="https://github.com/user-attachments/assets/6de250eb-18d3-48cb-93bb-c58fd2ad94bf" />
 
 - 串口选择和连接
 - 读取/写入键盘配置
@@ -109,10 +105,21 @@ Vibe Coding Keyboard 是一个基于 ESP32-S3 的自定义键盘项目，支持 
 - 实时预览和编辑按键映射
 - 支持多方案管理
 
+### 远程配置模式
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5804274d-da06-4f36-8f6a-aa9a790fe023" />
+
+1. 键盘在设置模式中选择`Remote Config`可以进入远程配置模式。
+2. 键盘进入远程设置模式后，在PC端运行`VCKBConfig.py`可以进行远程设置。
+3. 远程设置前，先要选择正确的串口端口号。
+4. 默认的案件配置可以通过"导入"功能，读取同一文件夹下的`Default.bin`配置文件导入。
+5. 点击"写入"将配置保存到键盘的 EEPROM。
+6. 键盘将根据配置响应按键输入。
+
+
 ### 按键映射格式
 
 每个按键支持：
-- 短名称（最多 10 字符）
+- 短名称（最多 7 字符）
 - 触发模式：同时触发、顺序触发、粘滞触发
 - 最多 5 个键值组合（基于 USB HID 键值表）
 
@@ -123,12 +130,17 @@ vckb/
 ├── 3D Models/          # 3D 打印模型文件
 ├── src/
 │   ├── Application/    # 配置工具
-│   │   └── VCKBConfig.py
+│   │   ├── VCKBConfig.py
+│   │   └── Default.bin # 默认配置，供参考
 │   └── Firmware/       # 固件代码
 │       └── vckeyboard/
 │           └── vckeyboard.ino
 └── README.md           # 本文件
 ```
+
+## 后续计划
+
+这个项目就是做着玩的，代码手搓没有很好的结构化，期待你参与开发一同完善，同时增加蓝牙和Wifi功能，做成无线键盘或者找到新的应用场景。
 
 ## 许可证
 
