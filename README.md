@@ -127,15 +127,24 @@ Vibe Coding Keyboard 是一个基于 ESP32-S3 的自定义键盘项目，支持 
 
 ```
 vckb/
-├── 3D Models/          # 3D 打印模型文件
+├── 3D Models/                            # 外壳 3D 建模
+│   ├── sketchup_src/                     # SketchUp 3D建模源文件
+│   └── stl/                              # 3D 打印用模型文件
 ├── src/
-│   ├── Application/    # 配置工具
+│   ├── Application/                      # 配置工具
 │   │   ├── VCKBConfig.py
-│   │   └── Default.bin # 默认配置，供参考
-│   └── Firmware/       # 固件代码
-│       └── vckeyboard/
-│           └── vckeyboard.ino
-└── README.md           # 本文件
+│   │   └── Default.bin                   # 默认配置，供参考
+│   ├── Firmware/                         # 固件代码
+│   │   └── vckeyboard/
+│   │       └── vckeyboard.ino
+│   └── PCB/                              # 电路设计
+│       ├── Gerbers/
+│       │   └── VCKeyboard_Gerber_v1.zip  # PCB生产Gerber文件
+│       ├── LCEDA_Project/                # EDA工程文件
+│       │   └── VibeKeyboard.eprj2        # LCEDA电路设计工程源文件
+│       └── Schematics/                   # 电路图
+│           └── SCH_Schematic_v1.pdf      # 电路原理图
+└── README.md                             # 本文件
 ```
 
 ## 后续计划
